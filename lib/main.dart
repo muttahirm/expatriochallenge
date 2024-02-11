@@ -1,4 +1,4 @@
-import 'package:coding_challenge/features/login/presentation/login_screen.dart';
+import 'package:coding_challenge/features/login/presentation/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
