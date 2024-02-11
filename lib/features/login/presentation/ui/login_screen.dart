@@ -11,7 +11,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
   final passwordFocusNode = FocusNode();
-  var _isObscured;
+  late bool _isObscured;
 
   @override
   void initState() {
