@@ -9,27 +9,35 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  path: any
-  lottie: ^2.4.0
-  url_launcher:
-  json_serializable: ^6.1.6
-  http: ^0.13.0
-  flutter_bloc:
-  flutter_secure_storage: ^5.1.2
-  flutter_svg: ^2.0.9
-  dropdown_search: ^5.0.6
-  equatable:
-  injectable:
-  dartz:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  dartz:
+  dropdown_search: ^5.0.6
+  equatable:
+  flutter_bloc:
+  flutter_secure_storage: ^5.1.2
+  flutter_svg: ^2.0.9
+  get_it:
+  http: ^0.13.0
+  injectable:
+  json_serializable: ^6.1.6
+  lottie: ^2.4.0
+  path: any
+  url_launcher:
+  core:
+    path: ./core
+  login:
+    path: ./features/login
+  tax_data:
+    path: ./features/tax_data
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.1.10
   flutter_lints: ^2.0.0
+  injectable_generator:
 
 # The following section is specific to Flutter packages.
 flutter:
