@@ -24,6 +24,11 @@ dependencies:
   lottie: ^2.4.0
   path: any
   url_launcher:
+  json_annotation:
+  core:
+    path: ../../core
+  tax_data:
+    path: ../../features/tax_data
 
 dev_dependencies:
   flutter_test:
