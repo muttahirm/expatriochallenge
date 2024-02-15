@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:login/data/repositories/repository/login_repository_imp.dart';
 import 'package:login/domain/enums/login_status.dart';
 import 'package:login/presentation/logics/cubits/login_cubit.dart';
-import 'package:path/path.dart';
 import 'package:tax_data/data/data_source/tax_data_api.dart';
 import 'package:tax_data/data/repositories/repository/tax_data_repository_imp.dart';
-import 'package:tax_data/domain/repositories/tax_data_repository.dart';
 import 'package:tax_data/domain/usecases/tax_data_usecase.dart';
-import 'package:tax_data/presentation/logics/cubits/login_cubit.dart';
+import 'package:tax_data/presentation/logics/cubits/tax_data_cubit.dart';
 import 'package:tax_data/presentation/ui/tax_data_screen.dart';
 
 class LoginScreen extends StatefulWidget {

@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-part of 'login_cubit.dart';
+part of 'tax_data_cubit.dart';
 
 class TaxDataState extends Equatable {
   // TaxDataState({

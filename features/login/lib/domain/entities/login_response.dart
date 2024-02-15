@@ -4,8 +4,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:login/domain/entities/foreign_address.dart';
 import 'package:login/domain/entities/german_address.dart';
 
-import 'subject.dart';
-
 part 'login_response.g.dart';
 
 @JsonSerializable()

@@ -5,7 +5,6 @@ import 'package:core/extras/extras.dart';
 import 'package:injectable/injectable.dart';
 import 'package:login/data/data_source/login_api.dart';
 import 'package:login/domain/entities/login_response.dart';
-import 'package:login/domain/entities/subject.dart';
 import 'package:login/domain/repositories/login_repository.dart';
 
 @LazySingleton(as: LoginRepository)
