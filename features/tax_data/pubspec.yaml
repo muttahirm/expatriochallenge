@@ -1,10 +1,12 @@
-name: coding_challenge
-description: A new Flutter project.
-publish_to: 'none'
+name: tax_data
+description: Tax Data Screen
+publish_to: none
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: '>=3.2.0 <4.0.0'
+
+
 
 dependencies:
   flutter:
@@ -26,11 +28,7 @@ dependencies:
   path: any
   url_launcher:
   core:
-    path: ./core
-  login:
-    path: ./features/login
-  tax_data:
-    path: ./features/tax_data
+    path: ../../core
 
 dev_dependencies:
   flutter_test:
@@ -44,6 +42,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/2019_XP_logo_white.png
-    - assets/login-background.json
     - assets/CryingGirl.svg

@@ -1,10 +1,17 @@
-import 'package:coding_challenge/features/login/presentation/ui/login_screen.dart';
+import 'package:coding_challenge/di.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:login/data/data_source/login_api.dart';
+import 'package:login/data/repositories/repository/login_repository_imp.dart';
+import 'package:login/domain/usecases/user_login_usecase.dart';
+import 'package:login/presentation/logics/cubits/login_cubit.dart';
+import 'package:login/presentation/ui/login_screen.dart';
 
-final GlobalKey<NavigatorState> _rootNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: '_rootNavigatorKey');
+// final GlobalKey<NavigatorState> _rootNavigatorKey =
+//     GlobalKey<NavigatorState>(debugLabel: '_rootNavigatorKey');
 
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 
@@ -37,7 +44,11 @@ class MyApp extends StatelessWidget {
         ),
         primaryColorDark: Colors.white,
       ),
-      home: const LoginScreen(),
+      home: BlocProvider(
+        create: (context) =>
+            LoginCubit(LoginUseCase(LoginRepositoryImpl(LoginApi()))),
+        child: const LoginScreen(),
+      ),
     );
   }
 }
