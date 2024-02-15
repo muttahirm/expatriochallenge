@@ -208,8 +208,6 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
   }
 }
 
-//nemampojma
-
 class CountrySelectionBottomSheet extends StatefulWidget {
   const CountrySelectionBottomSheet({super.key});
 
@@ -284,6 +282,32 @@ class _CountrySelectionBottomSheetState
               },
             ),
           ),
+          const SizedBox(height: 16.0),
+          const ConfirmationCheckBox(),
+          const SizedBox(height: 16.0),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.1,
+            height: 48,
+            child: ElevatedButton(
+              onPressed: () {
+                // BlocProvider.of<LoginCubit>(context).onSubmit(
+                //     'tito+bs792@expatrio.com', passwordController.text);
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    const Color.fromARGB(255, 15, 163, 153)),
+                visualDensity: const VisualDensity(vertical: 2),
+              ),
+              child: const Text(
+                "Submit",
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -445,3 +469,29 @@ class _RecurringTaxDetailsTaxDetails extends State<RecurringTaxDetails> {
     );
   }
 }
+
+class ConfirmationCheckBox extends StatefulWidget {
+  const ConfirmationCheckBox({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _ConfirmationCheckBoxState();
+}
+
+class _ConfirmationCheckBoxState extends State<ConfirmationCheckBox> {
+  @override
+  Widget build(BuildContext context) {
+    bool isChecked = false;
+    return CheckboxListTile(
+      title: const Text("Check to confirm"),
+      value: isChecked,
+      onChanged: (newValue) {
+        setState(() {
+          isChecked = newValue!;
+        });
+      },
+      controlAffinity: ListTileControlAffinity.leading, //  <-- leading Checkbox
+    );
+  }
+}
+
+//nemampojma

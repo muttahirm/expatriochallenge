@@ -8,5 +8,6 @@ class TaxDataCubit extends Cubit<TaxDataState> {
   final TaxDataUseCase taxDataUseCase;
   TaxDataCubit(this.taxDataUseCase) : super(TaxDataState());
 
-  Future<void> onSubmit() async {}
+  Future<void> onSave() async {}
+  Future<void> onReceive() async {}
 }
