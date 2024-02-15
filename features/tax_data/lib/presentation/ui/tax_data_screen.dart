@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class TaxDataScreen extends StatefulWidget {
 }
 
 class _TaxDataScreenState extends State<TaxDataScreen> {
-  int _count = 1;
+  final int _count = 1;
   @override
   void initState() {
     super.initState();
@@ -68,109 +69,6 @@ class _TaxDataScreenState extends State<TaxDataScreen> {
                             context: context,
                             builder: (BuildContext context) {
                               return const CountrySelectionBottomSheet();
-                              // return ListView.builder(
-                              //     scrollDirection: Axis.vertical,
-                              //     shrinkWrap: true,
-                              //     itemCount: _count + 1,
-                              //     itemBuilder: (context, index) {
-                              //       if (index == 0) {
-                              //         return Column(
-                              //           mainAxisAlignment:
-                              //               MainAxisAlignment.start,
-                              //           crossAxisAlignment:
-                              //               CrossAxisAlignment.start,
-                              //           children: <Widget>[
-                              //             const SizedBox(height: 16),
-                              //             const Align(
-                              //                 alignment: Alignment.center,
-                              //                 child:
-                              //                     Text('Personal Information')),
-                              //             const SizedBox(height: 24),
-                              //             const Padding(
-                              //               padding: EdgeInsets.symmetric(
-                              //                   horizontal: 24.0,
-                              //                   vertical: 8.0),
-                              //               child: Align(
-                              //                 alignment: Alignment.topLeft,
-                              //                 child:
-                              //                     Text('Financial Information'),
-                              //               ),
-                              //             ),
-                              //             const SizedBox(height: 16),
-                              //             const Padding(
-                              //               padding: EdgeInsets.symmetric(
-                              //                   horizontal: 24.0,
-                              //                   vertical: 8.0),
-                              //               child: Align(
-                              //                 alignment: Alignment.topLeft,
-                              //                 child: Text(
-                              //                     'WHICH COUNTRY SERVES AS YOUR PRIMARY TAX RESIDNECE'),
-                              //               ),
-                              //             ),
-                              //             // const TaxRow(),
-                              //             MyDropdownFormField(
-                              //               items: const [
-                              //                 'Option 1',
-                              //                 'Option 2',
-                              //                 'Option 3',
-                              //                 'Option 4',
-                              //                 'Option 5',
-                              //                 'Option 6',
-                              //                 'Option 7',
-                              //                 'Option 8',
-                              //                 'Option 9',
-                              //                 'Option 10',
-                              //                 'Option 11',
-                              //                 'Option 12'
-                              //               ],
-                              //               value: selectedValue,
-                              //               onChanged: (newValue) {
-                              //                 setState(() {
-                              //                   selectedValue = newValue!;
-                              //                 });
-                              //               },
-                              //             ),
-                              //             const SizedBox(height: 8),
-                              //             const Padding(
-                              //               padding: EdgeInsets.symmetric(
-                              //                   horizontal: 24.0,
-                              //                   vertical: 8.0),
-                              //               child: Align(
-                              //                 alignment: Alignment.topLeft,
-                              //                 child: Text(
-                              //                     'TAX IDENTIFICATION NUMBER (IF NOT APPLICABLE INSERT: N/A)*'),
-                              //               ),
-                              //             ),
-                              //             MyTextFormField(
-                              //               labelText: '',
-                              //               initialValue: email,
-                              //               keyboardType:
-                              //                   TextInputType.emailAddress,
-                              //               onChanged: (value) {
-                              //                 setState(() {
-                              //                   email = value;
-                              //                 });
-                              //               },
-                              //             ),
-                              //           ],
-                              //         );
-                              //       } else if (index == _count) {
-                              //         return Padding(
-                              //           padding: const EdgeInsets.all(24.0),
-                              //           child: Align(
-                              //             alignment: Alignment.topLeft,
-                              //             child: TextButton(
-                              //                 onPressed: () {
-                              //                   _addNewContactRow();
-                              //                 },
-                              //                 child: const Text('+ADD ANOTHER',
-                              //                     style: TextStyle(
-                              //                         color: Colors.black))),
-                              //           ),
-                              //         );
-                              //       }
-                              //       return const Text('xyz');
-                              //     });
                             });
                       },
                       style: ButtonStyle(
@@ -195,13 +93,6 @@ class _TaxDataScreenState extends State<TaxDataScreen> {
         );
       },
     );
-  }
-
-  void _addNewContactRow() {
-    setState(() {
-      _count = _count + 1;
-      print('count = $_count');
-    });
   }
 }
 
@@ -330,7 +221,18 @@ class CountrySelectionBottomSheet extends StatefulWidget {
 
 class _CountrySelectionBottomSheetState
     extends State<CountrySelectionBottomSheet> {
-  List<String> selectedCountries = [];
+  List<Map<String, dynamic>> selectedCountriesAndTaxNumbers = [
+    {'country': 'Andora', 'taxnumber': '12345'}
+  ];
+  List<String> selectedCountries = [''];
+  String selectedValue = 'Option 1';
+  String email = 'afa';
+
+  void removeEntry(int index) {
+    setState(() {
+      selectedCountries.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -341,7 +243,7 @@ class _CountrySelectionBottomSheetState
         mainAxisSize: MainAxisSize.min,
         children: [
           const Text(
-            'Select Countries and Tax ID',
+            'Personal Information',
             style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
@@ -353,28 +255,33 @@ class _CountrySelectionBottomSheetState
               itemCount: selectedCountries.length + 1,
               itemBuilder: (context, index) {
                 if (index == selectedCountries.length) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      // _showCountrySelectionDialog(context);
-                      setState(() {
-                        selectedCountries.add('xyz');
-                      });
-                    },
-                    child: const Text('Add Another Country'),
+                  return Align(
+                    alignment: Alignment.topLeft,
+                    child: TextButton(
+                      onPressed: () {
+                        // _showCountrySelectionDialog(context);
+                        setState(() {
+                          selectedCountries.add('xyz');
+                        });
+                      },
+                      child: const Text(
+                        '+Add Another',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  );
+                } else if (index == 0) {
+                  return const SingleTaxDetails(
+                    selectedValue: 'Option 1',
+                    taxNumber: '',
                   );
                 } else {
-                  // return ListTile(
-                  //   title: Text(selectedCountries[index]),
-                  //   trailing: IconButton(
-                  //     icon: const Icon(Icons.remove_circle),
-                  //     onPressed: () {
-                  //       setState(() {
-                  //         selectedCountries.removeAt(index);
-                  //       });
-                  //     },
-                  //   ),
-                  // );
-                  return const Text('xyz');
+                  return RecurringTaxDetails(
+                    selectedValue: 'Option 1',
+                    taxNumber: '',
+                    index: index,
+                    removeEntry: () => removeEntry(index),
+                  );
                 }
               },
             ),
@@ -383,45 +290,162 @@ class _CountrySelectionBottomSheetState
       ),
     );
   }
+}
 
-  void _showCountrySelectionDialog(BuildContext context) {
-    List<String> countryList = [];
-    for (var country in CountriesConstants.nationality) {
-      countryList.add(country['label'] as String);
-    }
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Select a Country'),
-          content: SingleChildScrollView(
-            child: Column(
-              children: countryList
-                  .where((country) => !selectedCountries.contains(country))
-                  .map((country) {
-                return ListTile(
-                  title: Text(country),
-                  onTap: () {
-                    setState(() {
-                      selectedCountries.add(country);
-                    });
-                    Navigator.pop(context);
-                    // Refresh bottom sheet after adding a new country
-                    // WidgetsBinding.instance.addPostFrameCallback((_) {
-                    //   showModalBottomSheet(
-                    //     context: context,
-                    //     builder: (BuildContext context) {
-                    //       return const CountrySelectionBottomSheet();
-                    //     },
-                    //   );
-                    // });
-                  },
-                );
-              }).toList(),
-            ),
+class SingleTaxDetails extends StatefulWidget {
+  final String selectedValue;
+  final String taxNumber;
+  const SingleTaxDetails({
+    Key? key,
+    required this.selectedValue,
+    required this.taxNumber,
+  }) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _SingleTaxDetails();
+}
+
+class _SingleTaxDetails extends State<SingleTaxDetails> {
+  @override
+  Widget build(BuildContext context) {
+    String selectedValue = '';
+    String taxNumber = '';
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const SizedBox(height: 16),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text('Financial Information'),
           ),
-        );
-      },
+        ),
+        const SizedBox(height: 16),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text('WHICH COUNTRY SERVES AS YOUR PRIMARY TAX RESIDNECE'),
+          ),
+        ),
+        MyDropdownFormField(
+          items: const [
+            'Option 1',
+            'Option 2',
+            'Option 3',
+            'Option 4',
+          ],
+          value: widget.selectedValue,
+          onChanged: (newValue) {
+            setState(() {
+              selectedValue = newValue!;
+            });
+          },
+        ),
+        const SizedBox(height: 8),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+                'TAX IDENTIFICATION NUMBER (IF NOT APPLICABLE INSERT: N/A)*'),
+          ),
+        ),
+        MyTextFormField(
+          labelText: '',
+          initialValue: widget.taxNumber,
+          keyboardType: TextInputType.emailAddress,
+          onChanged: (value) {
+            setState(() {
+              taxNumber = value;
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class RecurringTaxDetails extends StatefulWidget {
+  final String selectedValue;
+  final String taxNumber;
+  final int index;
+  final VoidCallback removeEntry;
+  const RecurringTaxDetails({
+    Key? key,
+    required this.selectedValue,
+    required this.taxNumber,
+    required this.index,
+    required this.removeEntry,
+  }) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _RecurringTaxDetailsTaxDetails();
+}
+
+class _RecurringTaxDetailsTaxDetails extends State<RecurringTaxDetails> {
+  @override
+  Widget build(BuildContext context) {
+    String selectedValue = '';
+    String taxNumber = '';
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const SizedBox(height: 32),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text('DO YOU HAEV OTHER TAX RESIDENCES?*'),
+          ),
+        ),
+        MyDropdownFormField(
+          items: const [
+            'Option 1',
+            'Option 2',
+            'Option 3',
+            'Option 4',
+          ],
+          value: widget.selectedValue,
+          onChanged: (newValue) {
+            setState(() {
+              selectedValue = newValue!;
+            });
+          },
+        ),
+        const SizedBox(height: 8),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text('TAX IDENTIFICATION NUMBER'),
+          ),
+        ),
+        MyTextFormField(
+          labelText: '',
+          initialValue: widget.taxNumber,
+          keyboardType: TextInputType.emailAddress,
+          onChanged: (value) {
+            setState(() {
+              taxNumber = value;
+            });
+          },
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: TextButton(
+              onPressed: () {
+                widget.removeEntry();
+              },
+              child: const Text(
+                'Remove',
+                style: TextStyle(color: Colors.black),
+              )),
+        )
+      ],
     );
   }
 }
