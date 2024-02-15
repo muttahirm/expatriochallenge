@@ -13,19 +13,15 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> onSubmit(String email, String password) async {
     LoginRequest parameters = LoginRequest(username: email, password: password);
-    print(state.loginStatus);
-    emit(state.copyWith(loginStatus: LoginStatus.sent));
-    print(state.loginStatus);
-    final response = await loginUseCase.call(parameters: parameters);
 
-    print(response);
+    emit(state.copyWith(loginStatus: LoginStatus.sent));
+
+    final response = await loginUseCase.call(parameters: parameters);
 
     if (response.data == null) {
       emit(state.copyWith(loginStatus: LoginStatus.failed));
-      print(state.loginStatus);
     } else {
       emit(state.copyWith(loginStatus: LoginStatus.success));
-      print(state.loginStatus);
     }
   }
 }

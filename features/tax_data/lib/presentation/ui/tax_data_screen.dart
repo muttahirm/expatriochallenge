@@ -33,8 +33,7 @@ class _TaxDataScreenState extends State<TaxDataScreen> {
   @override
   Widget build(BuildContext context) {
     const String assetName = 'assets/CryingGirl.svg';
-    String selectedValue = 'Option 1';
-    String email = 'adad';
+
     return BlocConsumer<TaxDataCubit, TaxDataState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -279,7 +278,6 @@ class _CountrySelectionBottomSheetState
                   return RecurringTaxDetails(
                     selectedValue: 'Option 1',
                     taxNumber: '',
-                    index: index,
                     removeEntry: () => removeEntry(index),
                   );
                 }
@@ -371,13 +369,11 @@ class _SingleTaxDetails extends State<SingleTaxDetails> {
 class RecurringTaxDetails extends StatefulWidget {
   final String selectedValue;
   final String taxNumber;
-  final int index;
   final VoidCallback removeEntry;
   const RecurringTaxDetails({
     Key? key,
     required this.selectedValue,
     required this.taxNumber,
-    required this.index,
     required this.removeEntry,
   }) : super(key: key);
 

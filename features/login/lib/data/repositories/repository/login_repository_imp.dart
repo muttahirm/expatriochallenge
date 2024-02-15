@@ -24,21 +24,15 @@ class LoginRepositoryImpl implements LoginRepository {
     final httpResponse =
         await _loginApi.login(username: username, password: password);
 
-    print('repo impl = state code ${httpResponse.statusCode}');
-    print('response body = ${httpResponse.body}');
-
     try {
       if (httpResponse.statusCode == ServerCodes.codeOk) {
-        print('httpResponse.statusCode 200');
         LoginResponse loginResponse = LoginResponse.fromJson(
             jsonDecode(httpResponse.body) as Map<String, dynamic>);
         return DataStateSuccess(loginResponse);
       } else {
-        print('failing');
         return DataStateFailed(httpResponse.body);
       }
     } catch (e) {
-      print('failing in catch');
       return DataStateFailed(httpResponse.body);
     }
   }
